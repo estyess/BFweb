@@ -23,32 +23,41 @@ let magressEvo = [];
 
 let currentEvo = [];
 
-$(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
-$(" #CSVargas > img ").css('scale', '1');
-$(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
-$(" #CSVargas2 > img ").css('scale', '1');
-$(" #vargas7Display ").css('opacity', '0.1');
-
-
-$('audio#titleMusic')[0].loop=true;
-$('audio#titleMusic')[0].volume = 0.5;
-let musicVolume = $('audio#titleMusic')[0].volume;
-
 $(document).ready(function(){
-    $('audio#titleMusic')[0].play();
+
+    $(" #CSVargas > img ").css('display', 'flow');
+    $(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
+    $(" #CSVargas > img ").css('scale', '1');
+    $(" #CSVargas2 > img ").css('display', 'flow');
+    $(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
+    $(" #CSVargas2 > img ").css('scale', '1');
+
+    $(" #vargas7Display ").css('display', 'flow');
+    $(" #vargas7Display ").animate({
+        opacity: 0.1,
+    },100);
+
+    $('audio#titleMusic')[0].loop=true;
+    $('audio#titleMusic')[0].volume = 0.5;
+    let musicVolume = $('audio#titleMusic')[0].volume;
+
 })
 
 function mute(){
     if(muted){
+
         muted = false;
         $('audio#titleMusic')[0].play();
         console.log("playing");
         $('#mute>img').attr('src',"img/sound-loud.svg");
+        
     }else{
+
         muted = true;
         $('audio#titleMusic')[0].pause();
         console.log("not playing");
         $('#mute>img').attr('src',"img/sound-off.svg");
+
     };
 }
 
@@ -275,6 +284,7 @@ function scrollL(){
 }
 
 function ok(){
+
     evo = Math.trunc(Math.random()*7);
     type = Math.trunc(Math.random()*12);
 
@@ -340,12 +350,27 @@ function ok(){
     }
 }
 
+function loadCS(){
+
+    $(" #omniDisplay img ").css('display', 'flow');
+    $(" #chars img ").css('display', 'flow');
+
+}
+
 $("#CSRight").on('click', function(){
     scrollR();
 });
 
 $("#CSLeft").on('click', function(){
     scrollL();
+});
+
+$("#CSLeft").on('mouseenter',function(){
+    loadCS();
+});
+
+$("#CSRight").on('mouseenter',function(){
+    loadCS();
 });
 
 $("#okButton").on('click', function(){

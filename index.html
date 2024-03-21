@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ABNLABEALBEALBEALBEALBA BEAL BEALRB AWEJKRBEAK J YIPPIEEEEE">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/phantom_icon.png" type="image/x-icon">
 </head>
 <body>
     <div id="backdrop">
@@ -17,25 +19,29 @@
             <button id="mute">
                 <img src="img/sound-loud.svg" alt="sound">
             </button>
-            <input id="volSlider" type="range" min="0" value="50" max="100" step="1">
+            <div>
+                <label for="volSlider">volume slider</label>
+                <input id="volSlider" type="range" min="0" value="50" max="100" step="1" name="volume slider">
+            </div>
+            
         </div>
     </div>
     <main>
         <div id="omniDisplay">
             <div>
-                <img src="img/vargas7.png" alt="Omni vargas" id="vargas7Display">
-                <img src="img/selena7.png" alt="Omni selena" id="selena7Display">
-                <img src="img/lance7.png" alt="Omni lance" id="lance7Display">
-                <img src="img/eze7.png" alt="Omni eze" id="eze7Display">
-                <img src="img/atro7.png" alt="Omni eze" id="atro7Display">
-                <img src="img/magress7.png" alt="Omni magress" id="magress7Display">
+                <img src="img/vargas7.webp" alt="Omni vargas" id="vargas7Display" fetchpriority="high">
+                <img src="img/selena7.webp" alt="Omni selena" id="selena7Display" fetchpriority="low">
+                <img src="img/lance7.webp" alt="Omni lance" id="lance7Display" fetchpriority="low">
+                <img src="img/eze7.webp" alt="Omni eze" id="eze7Display" fetchpriority="low">
+                <img src="img/atro7.webp" alt="Omni eze" id="atro7Display" fetchpriority="low">
+                <img src="img/magress7.webp" alt="Omni magress" id="magress7Display" fetchpriority="low">
             </div>
         </div>
         <div id="CSContainer">
             <div id="charSelect">
                 <div id="CSNav">
                     <button id="CSLeft">
-                        <img src="img/arrowL.gif" alt="left">
+                        <img src="img/arrowL.gif" alt="left" width="56" height="54">
                     </button>
                     <div>
                         <button id="okButton">
@@ -43,54 +49,54 @@
                         </button>
                     </div>
                     <button id="CSRight">
-                        <img src="img/arrowR.gif" alt="right">
+                        <img src="img/arrowR.gif" alt="right" width="56" height="54">
                     </button>
                 </div>
                 <div id="chars">
                     <div id="CSVargas">
                         <h1>Vargas</h1>
                         <p>Believers in Potential,<br>with a passionate<br>heart of <span>Fire</span></p>
-                        <img src="img/vargas1.png" alt="Vargas">
+                        <img src="img/vargas1.webp" alt="Vargas">
                     </div>
                     <div id="CSSelena">
                         <h1>Selena</h1>
                         <p>Seekers of truth,<br>with a crystal clear<br>heart of <span>Water</span></p>
-                        <img src="img/selena1.png" alt="Selena">
+                        <img src="img/selena1.webp" alt="Selena" fetchpriority="low">
                     </div>
                     <div id="CSLance">
                         <h1>Lance</h1>
                         <p>Bearers of Hope,<br>with a healing<br>heart of <span>Earth</span></p>
-                        <img src="img/lance1.png" alt="Lance">
+                        <img src="img/lance1.webp" alt="Lance" fetchpriority="low">
                     </div>
                     <div id="CSEze">
                         <h1>Eze</h1>
                         <p>Warriors for Justice,<br>with a strikingly honest<br>heart of <span>Thunder</span></p>
-                        <img src="img/eze1.png" alt="Eze">
+                        <img src="img/eze1.png" alt="Eze" fetchpriority="low" >
                     </div>
                     <div id="CSAtro">
                         <h1>Atro</h1>
                         <p>Knights of Purity,<br>with a radiating<br>heart of <span>Light</span></p>
-                        <img src="img/atro1.png" alt="Atro">
+                        <img src="img/atro1.png" alt="Atro" fetchpriority="low">
                     </div>
                     <div id="CSMagress">
                         <h1>Mogress</h1>
                         <p>Dwellers of Hatred,<br>with a corrupted<br>heart of <span>Dark</span></p>
-                        <img src="img/magress1.png" alt="Magress">
+                        <img src="img/magress1.webp" alt="Magress" fetchpriority="low">
                     </div>
                     <div id="CSVargas2">
                         <h1>Vargas</h1>
                         <p>Believers in Potential,<br>with a passionate<br>heart of <span>Fire</span></p>
-                        <img src="img/vargas1.png" alt="Vargas">
+                        <img src="img/vargas1.webp" alt="Vargas" fetchpriority="low">
                     </div>
                 </div>
             </div>
         </div>
         <div id="sillycard">
             <div id="pixelGif">
-                <img src="gif/vargas1_atk.gif" alt="vargas attack gif">
+                <img src="gif/vargas1_atk.gif" alt="vargas attack gif" fetchpriority="low">
             </div>
             <div id="unitArt">
-                <img src="img/badge_blue_02.png" alt="">
+                <img src="img/badge_blue_02.png" alt="" fetchpriority="low">
             </div>
             <div id="unitStats">
                 <table>

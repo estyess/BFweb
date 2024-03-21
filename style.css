@@ -16,6 +16,8 @@
 
 body{
 
+    color: var(--lightText);
+
     margin: 0;
 
     background-color: var(--bg);
@@ -103,6 +105,15 @@ button:hover{
     opacity: 0.8;
 
     filter: invert(98%);
+
+}
+
+#audioControls > div {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
 }
 
@@ -196,6 +207,8 @@ span{
 }
 
 #omniDisplay>div>img{
+
+    display: none;
 
     position: absolute;
 
@@ -321,6 +334,8 @@ span{
 }
 
 #chars>div>img{
+
+    display: none;
 
     position: absolute;
     scale: 0.8;
@@ -451,4 +466,3 @@ span{
 @keyframes reset {
     0%{right: 0;}
 }
-
