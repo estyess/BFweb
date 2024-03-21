@@ -1,0 +1,454 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap);
+
+:root{
+
+    --bg: #0d0d0f;
+    --lightText: #f0f0f0;
+    --red: #f02520;
+    --blue: #4090f0;
+    --green: #20a020;
+    --yellow: #ded020;
+    --beige: #f0f0a0;
+    --purple: #8020e0;
+    --light: #ffffff15;
+
+}
+
+body{
+
+    margin: 0;
+
+    background-color: var(--bg);
+
+}
+
+button{
+    transition-duration: 0.2s;
+}
+button:hover{
+
+    scale: 1.1; 
+
+}
+
+#backdrop{
+
+    position: absolute;
+    
+    height: 100svh;
+    width: 100vw;
+
+    background-color: var(--red);
+
+    mask-image: radial-gradient(ellipse at bottom center, #ffffff, transparent 70%);
+
+    opacity: 0.5;
+
+    transition-duration: 0.75s;
+
+    z-index: -3;
+
+}
+
+#ui{
+
+    position: absolute;
+
+    width: 100vw;
+    height: 100svh;
+
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    grid-template-rows: 1fr 9fr;
+    grid-template-areas: 
+    ". audio"
+    ". ."
+    ;
+
+    overflow: hidden;
+
+}
+
+#audioControls{
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+
+    grid-area: audio;
+    background: none;
+    border: none;
+
+    z-index: 1000;
+
+}
+
+#audioControls button{
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+
+    border-radius: 25%;
+
+}
+
+#audioControls button>img{
+
+    height: 80px;
+    aspect-ratio: 1;
+
+    opacity: 0.8;
+
+    filter: invert(98%);
+
+}
+
+main{
+
+    position: relative;
+    
+    height: 100svh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1;
+
+}
+
+h1{
+
+    margin: 0;
+    font-size: 3rem;
+
+}
+
+p{
+
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 300;
+
+}
+
+span{
+
+    font-weight: 400;
+
+}
+
+#okButton{
+    
+    color: var(--lightText);
+    font-weight: 700;
+    font-size: 2rem;
+    text-shadow: 1px 1px 10px black;
+
+    position: relative;
+
+    height: 80px;
+    width: 200px;
+
+    background: none;
+    border: none;
+
+    bottom: 100px;
+
+    background-image:url(img/button.png);
+    background-size: cover;
+
+    cursor: pointer;
+
+}
+
+#omniDisplay{
+
+    /* display: none; */
+
+    position: absolute;
+
+    height: 100svh;
+    width: 100vw;
+
+    z-index: -1;
+
+    overflow-y: hidden;
+
+}
+
+#omniDisplay>div{
+    
+    position: relative;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#omniDisplay>div>img{
+
+    position: absolute;
+
+    opacity: 0;
+
+    transition-duration: 0.75s;
+
+    filter: saturate(0);
+
+}
+
+#CSContainer{
+
+    position: relative;
+
+    width: 1000px;
+    height: 700px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    mask-image: linear-gradient(90deg, transparent, #ffffff 20%, #ffffff 80%, transparent);
+
+}
+
+#charSelect{
+
+    position: relative;
+
+    font-family: 'Inter', sans-serif;
+
+    height: 700px;
+    width: 700px;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--lightText);
+
+    overflow: visible;
+
+}
+
+#CSNav{
+
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+
+    z-index: 1000;
+
+}
+
+#CSNav>button{
+
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+
+    filter: drop-shadow(0px 0px 10px #000000)
+
+}
+
+#CSNav>div{
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: last baseline;
+
+}
+
+#chars{
+
+    position: relative;
+    right: 0px;
+
+    width: calc(700*7px);
+    height: 700px;
+
+    display: flex;
+
+    transition-duration: 0s;
+
+}
+
+#chars>div{
+    
+    position: relative;
+
+    width: 700px;
+    height: 700px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+    text-shadow: 3px 3px 3px #000000;
+
+}
+
+#chars>div>img{
+
+    position: absolute;
+    scale: 0.8;
+    filter: grayscale(0.5) brightness(0.8) opacity(0.3);
+    transition-duration: 0.5s;
+    z-index: -1;
+
+}
+#chars>div>img{
+    scale: 0.6;
+}
+
+#CSVargas span{
+    color: var(--red);
+}
+#CSSelena span{
+    color: var(--blue);
+}
+#CSLance span{
+    color: var(--green);
+}
+#CSEze span{
+    color: var(--yellow);
+}
+#CSAtro span{
+    color: var(--beige);
+}
+#CSMagress span{
+    color: var(--purple);
+}
+#CSVargas2 span{
+    color: var(--red);
+}
+
+#sillycard{
+
+    width: 700px;
+    height: 700px;
+
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3fr 3fr 2fr;
+    grid-template-areas: 
+    "stats unit"
+    "pxlGif pxlGif"
+    "bb bb"
+    ;
+    align-items: center;
+    justify-items: center;
+
+    border-radius: 10px;
+
+    backdrop-filter: brightness(0.5) blur(10px);
+
+}
+
+#pixelGif{
+
+    grid-area: pxlGif;
+
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    border-radius: 5px;
+
+    background-image: url(img/map/cave.jpg);
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#unitArt{
+
+    grid-area: unit;
+
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    border-radius: 5px;
+
+    background-color: var(--light);
+
+}
+
+#unitArt>img{
+    scale: 0.5;
+}
+
+#unitStats{
+
+    grid-area: stats;
+
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    border-radius: 5px;
+
+    background-color: var(--light);
+
+}
+
+#unitStats>table{
+    
+    width: 100%;
+    height: 100%;
+
+}
+
+#unitStats th{
+
+    width: 25%;
+
+}
+
+#braveBurst{
+
+    grid-area: bb;
+
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    border-radius: 5px;
+
+    background-color: var(--light);
+
+}
+
+@keyframes reset {
+    0%{right: 0;}
+}
+

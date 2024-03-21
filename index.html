@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="backdrop">
+        <audio id="titleMusic">
+            <source src="sound/bf001_title.mp3" type="audio/mp3" id="titleMusicSource">
+        </audio>
+    </div>
+    <div id="ui">
+        <div id="audioControls">
+            <button id="mute">
+                <img src="img/sound-loud.svg" alt="sound">
+            </button>
+            <input id="volSlider" type="range" min="0" value="50" max="100" step="1">
+        </div>
+    </div>
+    <main>
+        <div id="omniDisplay">
+            <div>
+                <img src="img/vargas7.png" alt="Omni vargas" id="vargas7Display">
+                <img src="img/selena7.png" alt="Omni selena" id="selena7Display">
+                <img src="img/lance7.png" alt="Omni lance" id="lance7Display">
+                <img src="img/eze7.png" alt="Omni eze" id="eze7Display">
+                <img src="img/atro7.png" alt="Omni eze" id="atro7Display">
+                <img src="img/magress7.png" alt="Omni magress" id="magress7Display">
+            </div>
+        </div>
+        <div id="CSContainer">
+            <div id="charSelect">
+                <div id="CSNav">
+                    <button id="CSLeft">
+                        <img src="img/arrowL.gif" alt="left">
+                    </button>
+                    <div>
+                        <button id="okButton">
+                            OK
+                        </button>
+                    </div>
+                    <button id="CSRight">
+                        <img src="img/arrowR.gif" alt="right">
+                    </button>
+                </div>
+                <div id="chars">
+                    <div id="CSVargas">
+                        <h1>Vargas</h1>
+                        <p>Believers in Potential,<br>with a passionate<br>heart of <span>Fire</span></p>
+                        <img src="img/vargas1.png" alt="Vargas">
+                    </div>
+                    <div id="CSSelena">
+                        <h1>Selena</h1>
+                        <p>Seekers of truth,<br>with a crystal clear<br>heart of <span>Water</span></p>
+                        <img src="img/selena1.png" alt="Selena">
+                    </div>
+                    <div id="CSLance">
+                        <h1>Lance</h1>
+                        <p>Bearers of Hope,<br>with a healing<br>heart of <span>Earth</span></p>
+                        <img src="img/lance1.png" alt="Lance">
+                    </div>
+                    <div id="CSEze">
+                        <h1>Eze</h1>
+                        <p>Warriors for Justice,<br>with a strikingly honest<br>heart of <span>Thunder</span></p>
+                        <img src="img/eze1.png" alt="Eze">
+                    </div>
+                    <div id="CSAtro">
+                        <h1>Atro</h1>
+                        <p>Knights of Purity,<br>with a radiating<br>heart of <span>Light</span></p>
+                        <img src="img/atro1.png" alt="Atro">
+                    </div>
+                    <div id="CSMagress">
+                        <h1>Mogress</h1>
+                        <p>Dwellers of Hatred,<br>with a corrupted<br>heart of <span>Dark</span></p>
+                        <img src="img/magress1.png" alt="Magress">
+                    </div>
+                    <div id="CSVargas2">
+                        <h1>Vargas</h1>
+                        <p>Believers in Potential,<br>with a passionate<br>heart of <span>Fire</span></p>
+                        <img src="img/vargas1.png" alt="Vargas">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="sillycard">
+            <div id="pixelGif">
+                <img src="gif/vargas1_atk.gif" alt="vargas attack gif">
+            </div>
+            <div id="unitArt">
+                <img src="img/badge_blue_02.png" alt="">
+            </div>
+            <div id="unitStats">
+                <table>
+                    <tr id="hp">
+                        <th>HP</th>
+                        <td> :3 </td>
+                    </tr>
+                    <tr id="atk">
+                        <th>ATK</th>
+                        <td> :3 </td>
+                    </tr>
+                    <tr id="def">
+                        <th>DEF</th>
+                        <td> :3 </td>
+                    </tr>
+                    <tr id="rec">
+                        <th>REC</th>
+                        <td> :3 </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="braveBurst">
+                BB info
+            </div>
+        </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
