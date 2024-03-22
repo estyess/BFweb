@@ -33,6 +33,43 @@ button:hover{
 
 }
 
+main{
+
+    position: relative;
+    
+    height: 100svh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1;
+
+}
+
+h1{
+
+    margin: 0;
+    font-size: 3rem;
+
+}
+
+p{
+
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 300;
+
+}
+
+span{
+
+    font-weight: 400;
+
+}
+
 #backdrop{
 
     position: absolute;
@@ -117,66 +154,6 @@ button:hover{
 
 }
 
-main{
-
-    position: relative;
-    
-    height: 100svh;
-    width: 100vw;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 1;
-
-}
-
-h1{
-
-    margin: 0;
-    font-size: 3rem;
-
-}
-
-p{
-
-    margin: 0;
-    font-size: 2rem;
-    text-align: center;
-    font-weight: 300;
-
-}
-
-span{
-
-    font-weight: 400;
-
-}
-
-#okButton{
-    
-    color: var(--lightText);
-    font-weight: 700;
-    font-size: 2rem;
-    text-shadow: 1px 1px 10px black;
-
-    position: relative;
-
-    height: 80px;
-    width: 200px;
-
-    background: none;
-    border: none;
-
-    bottom: 100px;
-
-    background-image:url(img/button.png);
-    background-size: cover;
-
-    cursor: pointer;
-
-}
 
 #omniDisplay{
 
@@ -264,11 +241,62 @@ span{
 
     display: grid;
     grid-template-columns: 2fr 3fr 2fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 1fr;
     justify-items: center;
     align-items: center;
 
+    grid-template-areas: 
+    "arrowL dots arrowR"
+    "arrowL ok arrowR"
+    ;
+
     z-index: 1000;
+
+}
+
+#CSDots>div{
+
+    position: relative;
+
+    top: 20px;
+
+}
+
+#CSLeft{
+
+    grid-area: arrowL;
+
+}
+
+#okButton{
+    
+    color: var(--lightText);
+    font-weight: 700;
+    font-size: 2rem;
+    text-shadow: 1px 1px 10px black;
+
+    position: relative;
+
+    grid-area: ok;
+
+    height: 80px;
+    width: 200px;
+
+    background: none;
+    border: none;
+
+    bottom: 75px;
+
+    background-image:url(img/button.png);
+    background-size: cover;
+
+    cursor: pointer;
+
+}
+
+#CSRight{
+
+    grid-area: arrowR;
 
 }
 

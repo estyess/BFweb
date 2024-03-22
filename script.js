@@ -23,6 +23,8 @@ let magressEvo = [];
 
 let currentEvo = [];
 
+
+
 $(document).ready(function(){
 
     $(" #CSVargas > img ").css('display', 'flow');
@@ -40,6 +42,31 @@ $(document).ready(function(){
     $('audio#titleMusic')[0].loop=true;
     $('audio#titleMusic')[0].volume = 0.5;
     let musicVolume = $('audio#titleMusic')[0].volume;
+
+    $("#CSRight").on('click', function(){
+        scrollR();
+    });
+    
+    $("#CSLeft").on('click', function(){
+        scrollL();
+    });
+    
+    $("#CSLeft").on('mouseenter',function(){
+        loadCS();
+    });
+    
+    $("#CSRight").on('mouseenter',function(){
+        loadCS();
+    });
+    
+    $("#okButton").on('click', function(){
+        ok();
+    })
+    
+    $("#mute").on('click', function(){
+        mute()
+    });
+    
 
 })
 
@@ -69,6 +96,31 @@ function mute(){
         $('#mute>img').attr('src',"img/sound-off.svg");
 
     };
+
+    $("#volSlider").on('input', function(){
+
+        $('audio#titleMusic')[0].volume = ($("#volSlider").val()/100);
+    
+        console.log($('audio#titleMusic')[0].volume);
+    
+        if(!muted){
+            if($('audio#titleMusic')[0].volume < 0.5 && $('audio#titleMusic')[0].volume > 0){
+                $('#mute>img').attr('src',"img/sound-silent.svg");
+            }
+        
+            if($('audio#titleMusic')[0].volume > 0.5){
+                $('#mute>img').attr('src',"img/sound-loud.svg");
+            }
+    
+            if($('audio#titleMusic')[0].volume == 0){
+                $('#mute>img').attr('src',"img/sound-0.svg");
+            }
+        }
+    
+    })
+
+
+
 }
 
 function scrollR(){
@@ -89,6 +141,9 @@ function scrollR(){
         },500, "swing")
         console.log(CS);
     }
+
+    $(`#CSDots img:nth-child(${CS})`).css('opacity','0');
+    $(`#CSDots img:nth-child(${CS-1})`).css('opacity','0.5');
 
     switch(CS){
         case 2:
@@ -367,48 +422,3 @@ function loadCS(){
 
 }
 
-$("#CSRight").on('click', function(){
-    scrollR();
-});
-
-$("#CSLeft").on('click', function(){
-    scrollL();
-});
-
-$("#CSLeft").on('mouseenter',function(){
-    loadCS();
-});
-
-$("#CSRight").on('mouseenter',function(){
-    loadCS();
-});
-
-$("#okButton").on('click', function(){
-    ok();
-})
-
-$("#mute").on('click', function(){
-    mute()
-});
-
-$("#volSlider").on('input', function(){
-
-    $('audio#titleMusic')[0].volume = ($("#volSlider").val()/100);
-
-    console.log($('audio#titleMusic')[0].volume);
-
-    if(!muted){
-        if($('audio#titleMusic')[0].volume < 0.5 && $('audio#titleMusic')[0].volume > 0){
-            $('#mute>img').attr('src',"img/sound-silent.svg");
-        }
-    
-        if($('audio#titleMusic')[0].volume > 0.5){
-            $('#mute>img').attr('src',"img/sound-loud.svg");
-        }
-
-        if($('audio#titleMusic')[0].volume == 0){
-            $('#mute>img').attr('src',"img/sound-0.svg");
-        }
-    }
-
-})
