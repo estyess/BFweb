@@ -64,10 +64,57 @@ p{
 
 }
 
+label{
+
+    opacity: 0.5;
+
+}
+
 span{
 
     font-weight: 400;
 
+}
+
+#intro{
+
+    position: absolute;
+
+    height: 100svh;
+    width: 100vw;
+
+    background-color: black;
+
+    z-index: 101;
+
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas:
+    ". . ."
+    ". intro ."
+    ". creds ."
+    ;
+
+    transition-duration: 1s;
+
+}
+
+#intro>:nth-child(1){
+    grid-area: intro;
+}
+
+#intro>:nth-child(2){
+    grid-area: creds;
+    opacity: 0.8;
+}
+
+#intro>div>div{
+    width: 100%;
+    height: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #backdrop{
@@ -119,7 +166,7 @@ span{
     background: none;
     border: none;
 
-    z-index: 1000;
+    z-index: 100;
 
 }
 
@@ -157,7 +204,7 @@ span{
 
 #omniDisplay{
 
-    /* display: none; */
+    display: none;
 
     position: absolute;
 
@@ -204,7 +251,8 @@ span{
     width: 1000px;
     height: 700px;
 
-    display: flex;
+    display: none;
+
     justify-content: center;
     align-items: center;
 
@@ -250,7 +298,19 @@ span{
     "arrowL ok arrowR"
     ;
 
-    z-index: 1000;
+    z-index: 100;
+
+}
+
+#CSDots{
+
+    height: 100%;
+
+    grid-area: dots;
+
+    display: inline-block;
+    
+    vertical-align: top;
 
 }
 
@@ -258,7 +318,21 @@ span{
 
     position: relative;
 
-    top: 20px;
+    top: 50px;
+
+    display: flex;
+    gap: 5px;
+
+    vertical-align: top;
+
+}
+
+#CSDots img{
+
+    filter: drop-shadow(0 0 10px black) saturate(0);
+    scale: 0.9;
+    opacity: 0.5;
+    transition-duration: 0.75s;
 
 }
 
@@ -269,6 +343,8 @@ span{
 }
 
 #okButton{
+
+    grid-area: ok;
     
     color: var(--lightText);
     font-weight: 700;
@@ -277,15 +353,13 @@ span{
 
     position: relative;
 
-    grid-area: ok;
+    top: 50px;
 
     height: 80px;
     width: 200px;
 
     background: none;
     border: none;
-
-    bottom: 75px;
 
     background-image:url(img/button.png);
     background-size: cover;
@@ -316,17 +390,6 @@ span{
     cursor: pointer;
 
     filter: drop-shadow(0px 0px 10px #000000)
-
-}
-
-#CSNav>div{
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: last baseline;
 
 }
 

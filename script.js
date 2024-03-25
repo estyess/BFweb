@@ -4,6 +4,8 @@ let muted = false;
 let evo = 0;
 let type;
 
+let musicVolume = $('audio#titleMusic')[0].volume;
+
 let hp = [];
 let atk = [];
 let def = [];
@@ -23,25 +25,7 @@ let magressEvo = [];
 
 let currentEvo = [];
 
-
-
 $(document).ready(function(){
-
-    $(" #CSVargas > img ").css('display', 'flow');
-    $(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
-    $(" #CSVargas > img ").css('scale', '1');
-    $(" #CSVargas2 > img ").css('display', 'flow');
-    $(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
-    $(" #CSVargas2 > img ").css('scale', '1');
-
-    $(" #vargas7Display ").css('display', 'flow');
-    $(" #vargas7Display ").animate({
-        opacity: 0.1,
-    },100);
-
-    $('audio#titleMusic')[0].loop=true;
-    $('audio#titleMusic')[0].volume = 0.5;
-    let musicVolume = $('audio#titleMusic')[0].volume;
 
     $("#CSRight").on('click', function(){
         scrollR();
@@ -64,18 +48,50 @@ $(document).ready(function(){
     })
     
     $("#mute").on('click', function(){
-        mute()
+        mute();
     });
     
+    $("#intro").on('click', function(){
+
+        loadCS();
+        $("#intro").css('opacity','0');
+        setTimeout(()=>{
+            $("#intro").css('display','none');
+        },1000);
+
+        $(" #CSVargas > img ").css('display', 'flow');
+        $(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
+        $(" #CSVargas > img ").css('scale', '1');
+        
+        $(" #CSVargas2 > img ").css('display', 'flow');
+        $(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
+        $(" #CSVargas2 > img ").css('scale', '1');
+    
+        $(`#CSDots img:nth-child(${CS})`).css('filter','saturate(1)');
+        $(`#CSDots img:nth-child(${CS})`).css('opacity','1');
+        $(`#CSDots img:nth-child(${CS})`).css('scale','1');
+    
+        $(" #vargas7Display ").css('display', 'flow');
+        $(" #vargas7Display ").animate({
+            opacity: 0.1,
+        },100);
+    
+        $('audio#titleMusic')[0].loop=true;
+        $('audio#titleMusic')[0].volume = 0.5;
+        $('audio#titleMusic')[0].play();
+
+    });
 
 })
 
 function mute(){
+    
     if(muted){
 
         muted = false;
         $('audio#titleMusic')[0].play();
         console.log("playing");
+
         if($('audio#titleMusic')[0].volume < 0.5 && $('audio#titleMusic')[0].volume > 0){
             $('#mute>img').attr('src',"img/sound-silent.svg");
         }
@@ -83,11 +99,11 @@ function mute(){
         if($('audio#titleMusic')[0].volume < 0.1){
             $('#mute>img').attr('src',"img/sound-0.svg");
         }
-    
-        if($('audio#titleMusic')[0].volume > 0.5){
+
+        if($('audio#titleMusic')[0].volume >= 0.5){
             $('#mute>img').attr('src',"img/sound-loud.svg");
         }
-        
+
     }else{
 
         muted = true;
@@ -102,28 +118,13 @@ function mute(){
         $('audio#titleMusic')[0].volume = ($("#volSlider").val()/100);
     
         console.log($('audio#titleMusic')[0].volume);
-    
-        if(!muted){
-            if($('audio#titleMusic')[0].volume < 0.5 && $('audio#titleMusic')[0].volume > 0){
-                $('#mute>img').attr('src',"img/sound-silent.svg");
-            }
-        
-            if($('audio#titleMusic')[0].volume > 0.5){
-                $('#mute>img').attr('src',"img/sound-loud.svg");
-            }
-    
-            if($('audio#titleMusic')[0].volume == 0){
-                $('#mute>img').attr('src',"img/sound-0.svg");
-            }
-        }
-    
+
     })
-
-
 
 }
 
 function scrollR(){
+
     CS++;
     CSPos = (CS-1)*700;
     if(CS<=7){
@@ -141,95 +142,67 @@ function scrollR(){
         },500, "swing")
         console.log(CS);
     }
-
-    $(`#CSDots img:nth-child(${CS})`).css('opacity','0');
+    
+    $(`#CSDots img:nth-child(${CS-1})`).css('filter','saturate(0)');
     $(`#CSDots img:nth-child(${CS-1})`).css('opacity','0.5');
+    $(`#CSDots img:nth-child(${CS-1})`).css('scale','0.9');
+
+    $(`#chars div:nth-child(${CS}) img` ).css('filter', 'grayscale(0) brightness(0.9)');
+    $(`#chars div:nth-child(${CS}) img` ).css('scale', '1');
+
+    $(`#chars div:nth-child(${CS-1}) img` ).css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
+    $(`#chars div:nth-child(${CS-1}) img` ).css('scale', '0.8');
+    $(`#omniDisplay img:nth-child(${CS-1})` ).css('opacity', '0');
+
+    switch(CS){
+
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+            $(`#omniDisplay img:nth-child(${CS})` ).css('opacity', '0.1');
+
+            $(`#CSDots img:nth-child(${CS})`).css('opacity','1');
+            $(`#CSDots img:nth-child(${CS})`).css('scale','1');
+            $(`#CSDots img:nth-child(${CS})`).css('filter','saturate(1)');
+            break;
+        case 7:
+            $(`#chars div:nth-child(${1}) img` ).css('filter', 'grayscale(0) brightness(0.9)');
+            $(`#chars div:nth-child(${1}) img` ).css('scale', '1');
+            $(`#omniDisplay img:nth-child(${1})` ).css('opacity', '0.1');
+        
+            $(`#CSDots img:nth-child(${1})`).css('opacity','1');
+            $(`#CSDots img:nth-child(${1})`).css('scale','1');
+            $(`#CSDots img:nth-child(${1})`).css('filter','saturate(1)');
+            break;
+    }
 
     switch(CS){
         case 2:
-            $(" #CSSelena > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSSelena > img ").css('scale', '1');
-            $(" #selena7Display ").css('opacity', '0.1');
-    
-            $(" #CSVargas > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSVargas > img ").css('scale', '0.8');
-            $(" #vargas7Display ").css('opacity', '0');
-    
-            $(" #CSVargas2 > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSVargas2 > img ").css('scale', '0.8');
-
             $("#backdrop").css('background-color', 'var(--blue)');
             break;
         case 3:
-            $(" #CSLance > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSLance > img ").css('scale', '1');
-            $(" #lance7Display ").css('opacity', '0.1');
-    
-            $(" #CSSelena > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSSelena > img ").css('scale', '0.8');
-            $(" #selena7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--green)');
             break;
         case 4:
-            $(" #CSEze > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSEze > img ").css('scale', '1');
-            $(" #eze7Display ").css('opacity', '0.1');
-    
-            $(" #CSLance > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSLance > img ").css('scale', '0.8');
-            $(" #lance7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--yellow)');
             break;
         case 5:
-            $(" #CSAtro > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSAtro > img ").css('scale', '1');
-            $(" #atro7Display ").css('opacity', '0.1');
-    
-            $(" #CSEze > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSEze > img ").css('scale', '0.8');
-            $(" #eze7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--beige)');
             break;
         case 6:
-            $(" #CSMagress > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSMagress > img ").css('scale', '0.8');
-            $(" #magress7Display ").css('opacity', '0.1');
-    
-            $(" #CSAtro > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSAtro > img ").css('scale', '0.8');
-            $(" #atro7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--purple)');
             break;
         case 7:
-            $(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas2 > img ").css('scale', '1');
-            $(" #vargas7Display ").css('opacity', '0.1');
-    
-            $(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas > img ").css('scale', '1');
-    
-            $(" #CSMagress > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSMagress > img ").css('scale', '0.6');
-            $(" #magress7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--red)');
             break;
-        default:
-            $(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas2 > img ").css('scale', '1');
-            $(" #vargas7Display ").css('opacity', '0.1');
-    
-            $(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas > img ").css('scale', '1');
     }
 
 }
 
 function scrollL(){
+
     CS--;
     CSPos = (CS-1)*700;
     if(CS>0){
@@ -249,100 +222,59 @@ function scrollL(){
         console.log(CS);
     }
 
+    $(`#CSDots img:nth-child(${CS})`).css('filter','saturate(1)');
+    $(`#CSDots img:nth-child(${CS})`).css('opacity','1');
+    $(`#CSDots img:nth-child(${CS})`).css('scale','1');
+
+    $(`#chars div:nth-child(${CS}) img` ).css('filter', 'grayscale(0) brightness(0.9)');
+    $(`#chars div:nth-child(${CS}) img` ).css('scale', '1');
+    $(`#omniDisplay img:nth-child(${CS})` ).css('opacity', '0.1');
+
+    $(`#chars div:nth-child(${CS+1}) img` ).css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
+    $(`#chars div:nth-child(${CS+1}) img` ).css('scale', '0.8');
+
+
     switch(CS){
         case 1:
-            $(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas > img ").css('scale', '1');
-            $(" #vargas7Display ").css('opacity', '0.1');
-    
-            $(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas2 > img ").css('scale', '1');
-    
-            $(" #CSSelena > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSSelena > img ").css('scale', '0.8');
-            $(" #selena7Display ").css('opacity', '0');
+            $(`#chars div:nth-child(${7}) img` ).css('filter', 'grayscale(0) brightness(0.9)');
+            $(`#chars div:nth-child(${7}) img` ).css('scale', '1');
+            $(`#omniDisplay img:nth-child(${7})` ).css('opacity', '0.1');        
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            $(`#omniDisplay img:nth-child(${CS+1})` ).css('opacity', '0');
+            $(`#CSDots img:nth-child(${CS+1})`).css('opacity','0.5');
+            $(`#CSDots img:nth-child(${CS+1})`).css('scale','0.9');
+            $(`#CSDots img:nth-child(${CS+1})`).css('filter','saturate(0)');
+            break;
+        
+        case 6:
+            $(`#omniDisplay img:nth-child(${1})` ).css('opacity', '0');
+            $(`#CSDots img:nth-child(${1})`).css('opacity','0.5');
+            $(`#CSDots img:nth-child(${1})`).css('scale','0.9');
+            $(`#CSDots img:nth-child(${1})`).css('filter','saturate(0)');
+            break;
+    }
 
+    switch(CS){
+        case 1:
             $("#backdrop").css('background-color', 'var(--red)');
             break;
         case 2:
-            $(" #CSSelena > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSSelena > img ").css('scale', '1');
-            $(" #selena7Display ").css('opacity', '0.1');
-    
-            $(" #CSLance > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSLance > img ").css('scale', '0.8');
-            $(" #lance7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--blue)');
             break;
         case 3:
-            $(" #CSLance > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSLance > img ").css('scale', '1');
-            $(" #lance7Display ").css('opacity', '0.1');
-    
-            $(" #CSEze > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSEze > img ").css('scale', '0.8');
-            $(" #eze7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--green)');
             break;
         case 4:
-            $(" #CSEze > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSEze > img ").css('scale', '1');
-            $(" #eze7Display ").css('opacity', '0.1');
-    
-            $(" #CSAtro > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSAtro > img ").css('scale', '0.8');
-            $(" #atro7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--yellow)');
             break;
         case 5:
-            $(" #CSAtro > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSAtro > img ").css('scale', '1');
-            $(" #atro7Display ").css('opacity', '0.1');
-    
-            $(" #CSMagress > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSMagress > img ").css('scale', '0.6');
-            $(" #magress7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--beige)');
             break;
         case 6:
-            $(" #CSMagress > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSMagress > img ").css('scale', '0.8');
-            $(" #magress7Display ").css('opacity', '0.1');
-    
-            $(" #CSVargas2 > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSVargas2 > img ").css('scale', '0.8');
-            $(" #vargas7Display ").css('opacity', '0');
-
             $("#backdrop").css('background-color', 'var(--purple)');
-            break;
-        case 7:
-            $(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas2 > img ").css('scale', '1');
-            $(" #vargas7Display ").css('opacity', '0.1');
-    
-            $(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas > img ").css('scale', '1');
-    
-            $(" #CSMagress > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSMagress > img ").css('scale', '0.6');
-
-            $("#backdrop").css('background-color', 'var(--red)');
-            break;
-        default:
-            $(" #CSVargas > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas > img ").css('scale', '1');
-            $(" #vargas7Display ").css('opacity', '0.1');
-    
-            $(" #CSVargas2 > img ").css('filter', 'grayscale(0) brightness(0.9)');
-            $(" #CSVargas2 > img ").css('scale', '1');
-    
-            $(" #CSSelena > img ").css('filter', 'grayscale(0.5) brightness(0.8) opacity(0.3)');
-            $(" #CSSelena > img ").css('scale', '0.8');
-            $(" #selena7Display ").css('opacity', '0');
             break;
     }
 
@@ -387,6 +319,7 @@ function ok(){
     $("#sillycard").css('display', 'grid'); 
     $("#titleMusic").attr('src','sound/bf005_worldmap.mp3');
     $('audio#titleMusic')[0].play();
+
     switch(CS){
         case 1:
             $('#pixelGif').css('background-image', 'url(img/map/cave.jpg)')
@@ -417,6 +350,8 @@ function ok(){
 
 function loadCS(){
 
+    $(" #CSContainer").css('display', 'flex');
+    $(" #omniDisplay").css('display', 'flow');
     $(" #omniDisplay img ").css('display', 'flow');
     $(" #chars img ").css('display', 'flow');
 
