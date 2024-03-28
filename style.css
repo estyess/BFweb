@@ -83,7 +83,7 @@ span{
     height: 100svh;
     width: 100vw;
 
-    background-color: black;
+    background-color: var(--bg);
 
     z-index: 101;
 
@@ -113,7 +113,7 @@ span{
     width: 100%;
     height: calc(100% - 40px);
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -332,7 +332,7 @@ span{
     filter: drop-shadow(0 0 10px black) saturate(0);
     scale: 0.9;
     opacity: 0.5;
-    transition-duration: 0.75s;
+    transition-duration: 0.5s;
 
 }
 

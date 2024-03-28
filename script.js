@@ -113,15 +113,27 @@ function mute(){
 
     };
 
-    $("#volSlider").on('input', function(){
-
-        $('audio#titleMusic')[0].volume = ($("#volSlider").val()/100);
-    
-        console.log($('audio#titleMusic')[0].volume);
-
-    })
-
 }
+
+$("#volSlider").on('input', function(){
+
+    $('audio#titleMusic')[0].volume = ($("#volSlider").val()/100);
+
+    console.log($('audio#titleMusic')[0].volume);
+
+    if($('audio#titleMusic')[0].volume < 0.5 && $('audio#titleMusic')[0].volume > 0){
+        $('#mute>img').attr('src',"img/sound-silent.svg");
+    }
+
+    if($('audio#titleMusic')[0].volume < 0.1){
+        $('#mute>img').attr('src',"img/sound-0.svg");
+    }
+
+    if($('audio#titleMusic')[0].volume >= 0.5){
+        $('#mute>img').attr('src',"img/sound-loud.svg");
+    }
+
+})
 
 function scrollR(){
 
